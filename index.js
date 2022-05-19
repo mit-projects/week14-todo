@@ -1,19 +1,9 @@
 
 function App() {
   const [todos, setTodos] = React.useState([
-    {
-      text: "Learn react",
-      completed: false
-    },
-    {
-      text: "Work on the house",
-      completed: false
-    },
-    {
-      text: "Do Math",
-      completed: false
-    }
+
   ]);
+  const [complete, setComplete] = React.useState([])
 
   const addTodo = (value) => {
     if (!value) return;
@@ -26,12 +16,28 @@ function App() {
     setTodos(updatedTodos);
   }
 
+  const completeTodo = (index) => {
+    const item = todos[index];
+    item.complete = true;
+    setComplete([...complete, item]);
+    removeTodo(index);
+  }
+
   return (
     <div className="list-container">
-      <h1>To Do List</h1>
-      {todos.map((todo, index) => <Todo key={index} todo={todo} index={index} removeTodo={removeTodo} />)}
+      <h2>To Do List</h2>
+      {todos.length < 1 && <div className="empty-list">The list is empty. <br /> Add some to-do's below!</div>}
+      {todos.map((todo, index) => <Todo key={index} todo={todo} index={index} completeTodo={completeTodo} removeTodo={removeTodo} />)}
       <div className="form-container">
         <Form addTodo={addTodo} />
+      </div>
+
+      <div className="completed-container">
+        {complete.length > 0 && <>
+          <h3>Completed Items</h3>
+          {complete.map((todo, index) => <Todo key={index} todo={todo} index={index} removeTodo={removeTodo} />)}
+        </>
+        }
       </div>
     </div >
   )

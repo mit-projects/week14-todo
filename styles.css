@@ -20,6 +20,7 @@ body {
     flex-direction: column;
     padding: 10px;
     text-align: left;
+    min-width: 330px;
 }
 
 h1 {
@@ -28,6 +29,10 @@ h1 {
 
 .todo-item {
     padding: 10px;
+}
+
+.form-container {
+    margin-top: 10px;
 }
 
 .input-field {
@@ -44,7 +49,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 500ms ease;
+    transition: all 300ms ease;
 }
 
 .todo-item-container:hover {
@@ -56,4 +61,12 @@ h1 {
     cursor: pointer;
     width: 20px;
     height: 20px;
+}
+
+.completed-container {
+    font-size: 0.8em;
+}
+
+.completed-container div {
+    color: #aaaaaa;
 }
